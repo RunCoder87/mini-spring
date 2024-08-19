@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
+    <!-- 声明 bean -->
     <bean id="aservice" class="com.djk.minis.test.service.impl.AServiceImpl"/>
+
+    <!--setter方式注入-->
+    <bean id="bservice" class="com.djk.minis.test.service.impl.AServiceImpl">
+        <property name="property1" value="Hello World!"/>
+    </bean>
+
+<!--    &lt;!&ndash;构造器方式注入&ndash;&gt;-->
+<!--    <bean id="aservice" class="com.minis.test.AServiceImpl">-->
+<!--        <constructor-arg type="String" name="name" value="abc"/>-->
+<!--        <constructor-arg type="int" name="level" value="3"/>-->
+<!--    </bean>-->
 </beans>
