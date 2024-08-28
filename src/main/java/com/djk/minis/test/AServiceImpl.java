@@ -1,14 +1,13 @@
-package com.djk.minis.test.service.impl;
+package com.djk.minis.test;
 
 
-import com.djk.minis.test.service.AService;
 
 public class AServiceImpl implements AService {
-    private final String property1;
-    private final String property2;
-    private final String name;
+    private String property1;
+    private String property2;
+    private String name;
     private int level;
-    private final boolean isRef;
+    private BaseService ref1;
 
     public AServiceImpl(String name, int level) {
         this.name = name;
@@ -22,6 +21,29 @@ public class AServiceImpl implements AService {
         System.out.println(this.property1 + "," + this.property2);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public BaseService getRef1() {
+        return ref1;
+    }
+
+    public void setRef1(BaseService ref1) {
+        this.ref1 = ref1;
+    }
 
     public String getProperty1() {
         return property1;

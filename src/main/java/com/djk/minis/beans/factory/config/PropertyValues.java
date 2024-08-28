@@ -1,8 +1,12 @@
-package com.djk.minis.beans;
+package com.djk.minis.beans.factory.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 存储xml里所有的<property>实体类的信息
+ *
+ */
 public class PropertyValues {
     private final List<PropertyValue> propertyValueList;
 
@@ -22,9 +26,7 @@ public class PropertyValues {
         this.propertyValueList.add(pv);
     }
 
-    public void addPropertyValue(String propertyName, Object propertyValue) {
-        addPropertyValue(new PropertyValue(propertyName, propertyValue));
-    }
+
 
     public void removePropertyValue(PropertyValue pv) {
         this.propertyValueList.remove(pv);

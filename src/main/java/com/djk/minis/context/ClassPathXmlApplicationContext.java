@@ -1,10 +1,10 @@
 package com.djk.minis.context;
 
-import com.djk.minis.beans.BeanDefinition;
-import com.djk.minis.beans.BeanFactory;
+import com.djk.minis.beans.BeansException;
+import com.djk.minis.beans.factory.BeanFactory;
 import com.djk.minis.core.ClassPathXmlResource;
-import com.djk.minis.beans.SimpleBeanFactory;
-import com.djk.minis.beans.XmlBeanDefinitionReader;
+import com.djk.minis.beans.factory.support.SimpleBeanFactory;
+import com.djk.minis.beans.factory.xml.XmlBeanDefinitionReader;
 
 public class ClassPathXmlApplicationContext implements BeanFactory {
     SimpleBeanFactory beanFactory;
@@ -15,10 +15,11 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
         this.beanFactory = new SimpleBeanFactory();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
         reader.loadBeanDefinitions(resource);
+        beanFactory.refresh();
     }
 
     @Override
-    public Object getBean(String beanName){
+    public Object getBean(String beanName) throws BeansException {
         return beanFactory.getBean(beanName);
     }
 

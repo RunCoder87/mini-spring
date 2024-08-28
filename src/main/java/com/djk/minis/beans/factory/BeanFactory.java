@@ -1,4 +1,6 @@
-package com.djk.minis.beans;
+package com.djk.minis.beans.factory;
+
+import com.djk.minis.beans.BeansException;
 
 /**
  * bean工厂
@@ -15,5 +17,6 @@ public interface BeanFactory {
     boolean isSingleton(String beanName);
     boolean isPrototype(String beanName);
     Class<?> getType(String beanName);
+
 
 }

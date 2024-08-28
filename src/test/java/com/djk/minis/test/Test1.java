@@ -9,12 +9,15 @@ public class Test1 {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
         AServiceImpl aservice = null;
         try {
-            aservice = (AServiceImpl) context.getBean("bservice");
+            aservice = (AServiceImpl) context.getBean("cservice");
             aservice.sayHello();
 
             System.out.println("property1："+aservice.getProperty1());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        Integer i = Integer.valueOf("01");
+        System.out.println(i);
+
     }
 }

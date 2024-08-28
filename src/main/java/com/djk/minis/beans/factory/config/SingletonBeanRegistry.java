@@ -1,4 +1,4 @@
-package com.djk.minis.beans;
+package com.djk.minis.beans.factory.config;
 
 /**
  * 角色分离：

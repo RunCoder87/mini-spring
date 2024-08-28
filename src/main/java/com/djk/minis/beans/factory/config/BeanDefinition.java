@@ -1,4 +1,4 @@
-package com.djk.minis.beans;
+package com.djk.minis.beans.factory.config;
 
 /**
  * bean定义
@@ -12,10 +12,10 @@ public class BeanDefinition {
     private boolean lazyInit = false;//是否延迟初始化
     private String[] dependsOn;
     private ArgumentValues constructorArgumentValues; //构造函数参数
-    private PropertyValues propertyValues;
-    private String initMethodName;
-    private volatile Object beanClass;
-    private String scope = SCOPE_SINGLETON;
+    private PropertyValues propertyValues; //setter方法注入和成员变量
+    private String initMethodName; //初始化的方法名
+    private volatile Object beanClass; //
+    private String scope = SCOPE_SINGLETON; //作用域
 
     public BeanDefinition(String id, String className) {
         this.id = id;
