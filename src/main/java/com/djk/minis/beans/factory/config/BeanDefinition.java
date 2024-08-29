@@ -9,7 +9,7 @@ public class BeanDefinition {
 
     String SCOPE_SINGLETON = "singleton";//单例
     String SCOPE_PROTOTYPE = "prototype";//原型
-    private boolean lazyInit = false;//是否延迟初始化
+    private boolean lazyInit = true;//是否延迟初始化
     private String[] dependsOn;
     private ArgumentValues constructorArgumentValues; //构造函数参数
     private PropertyValues propertyValues; //setter方法注入和成员变量

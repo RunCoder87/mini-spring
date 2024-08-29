@@ -36,7 +36,6 @@ public class XmlBeanDefinitionReader {
             String beanId = element.attributeValue("id");
             String beanClassName = element.attributeValue("class");
             BeanDefinition beanDefinition = new BeanDefinition(beanId, beanClassName);
-            simpleBeanFactory.registerBeanDefinition(beanDefinition);
 
             //获取bean标签下的constructor标签
             List<Element> constructorElements = element.elements("constructor-arg");
@@ -83,7 +82,7 @@ public class XmlBeanDefinitionReader {
             beanDefinition.setDependsOn(refArray);
 
             //注册beanDefinition
-            simpleBeanFactory.registerBeanDefinition(beanDefinition);
+            simpleBeanFactory.registerBeanDefinition(beanId,beanDefinition);
         }
     }
 }

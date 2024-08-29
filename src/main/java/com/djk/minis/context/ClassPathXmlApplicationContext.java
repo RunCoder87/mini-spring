@@ -2,6 +2,7 @@ package com.djk.minis.context;
 
 import com.djk.minis.beans.BeansException;
 import com.djk.minis.beans.factory.BeanFactory;
+import com.djk.minis.beans.factory.config.BeanDefinition;
 import com.djk.minis.core.ClassPathXmlResource;
 import com.djk.minis.beans.factory.support.SimpleBeanFactory;
 import com.djk.minis.beans.factory.xml.XmlBeanDefinitionReader;
@@ -29,9 +30,12 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
         return beanFactory.containsBean(beanName);
     }
 
-    @Override
+    public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) {
+        beanFactory.registerBeanDefinition(beanName, beanDefinition);
+    }
+
     public void registerBean(String beanName, Object obj) {
-        beanFactory.registerBean(beanName, obj);
+        this.beanFactory.registerBean(beanName, obj);
     }
 
     @Override

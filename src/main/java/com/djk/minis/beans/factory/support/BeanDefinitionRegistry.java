@@ -7,7 +7,7 @@ import com.djk.minis.beans.factory.config.BeanDefinition;
  *
  */
 public interface BeanDefinitionRegistry {
-    void registerBeanDefinition(BeanDefinition beanDefinition);
+    void registerBeanDefinition(String beanName,BeanDefinition beanDefinition);
     BeanDefinition getBeanDefinition(String beanName);
     boolean containsBeanDefinition(String beanName);
     void removeBeanDefinition(String beanName);

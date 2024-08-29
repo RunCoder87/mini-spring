@@ -19,12 +19,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory, BeanDefinitionRegistry {
     private Map<String, BeanDefinition> beanDefinitions = new ConcurrentHashMap<>();
-    private List<String> beanDefinitionNames = new ArrayList<>();
     private final Map<String, Object> earlySingleton = new HashMap<>(); //存放bean的早期实例
+    private List<String> beanDefinitionsNames = new ArrayList<>();
 
     //getBean，容器的核心方法
     @Override
-    public Object getBean(String beanName) throws BeansException{
+    public Object getBean(String beanName) throws BeansException {
         //尝试直接从单例池获取bean实例
         Object singleton = getSingleton(beanName);
         //单例池没有，从早期bean实例中获取
@@ -52,13 +52,18 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
         return containsSingleton(beanName);
     }
 
-    @Override
-    public void registerBean(String beanName, Object obj) {
-        registerSingleton(beanName, obj);
-    }
+    
 
-    public void registerBeanDefinition(BeanDefinition beanDefinition) {
-        beanDefinitions.put(beanDefinition.getId(), beanDefinition);
+    @Override
+    public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) {
+        beanDefinitions.put(beanName, beanDefinition);
+        beanDefinitionsNames.add(beanName);
+        //不是懒加载的bean，则立即创建bean
+        if (!beanDefinition.isLazyInit()) {
+            //懒加载，则直接创建bean
+            getBean(beanName);
+        }
+
     }
 
     @Override
@@ -83,20 +88,21 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
 
     @Override
     public boolean containsBeanDefinition(String beanName) {
-        return beanDefinitionNames.contains(beanName);
+        return beanNames.contains(beanName);
     }
 
     @Override
     public void removeBeanDefinition(String beanName) {
         beanDefinitions.remove(beanName);
-        beanDefinitionNames.remove(beanName);
+        beanNames.remove(beanName);
+        beanDefinitionsNames.remove(beanName);
     }
 
     /**
      * 把容器中所有的bean实例创建出来
      */
     public void refresh() {
-        for (String beanName : beanDefinitionNames) {
+        for (String beanName : beanDefinitionsNames) {
             getBean(beanName);
         }
     }
@@ -250,5 +256,9 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
                 }
             }
         }
+    }
+
+    public void registerBean(String beanName, Object obj) {
+        registerSingleton(beanName, obj);
     }
 }
