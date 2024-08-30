@@ -3,17 +3,17 @@ package com.djk.minis.beans.factory.config;
 /**
  * 对应xml中的<constructor-arg>标签
  */
-public class ArgumentValue {
+public class ConstructorArgumentValue {
     private String type;
     private String name;
     private Object value;
 
-    public ArgumentValue(Object value, String type) {
+    public ConstructorArgumentValue(Object value, String type) {
         this.value = value;
         this.type = type;
     }
 
-    public ArgumentValue(String type, String name, Object value) {
+    public ConstructorArgumentValue(String type, String name, Object value) {
         this.type = type;
         this.name = name;
         this.value = value;

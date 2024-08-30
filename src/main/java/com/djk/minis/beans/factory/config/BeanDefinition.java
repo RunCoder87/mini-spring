@@ -11,7 +11,7 @@ public class BeanDefinition {
     String SCOPE_PROTOTYPE = "prototype";//原型
     private boolean lazyInit = true;//是否延迟初始化
     private String[] dependsOn;
-    private ArgumentValues constructorArgumentValues; //构造函数参数
+    private ConstructorArgumentValues constructorArgumentValues; //构造函数参数
     private PropertyValues propertyValues; //setter方法注入和成员变量
     private String initMethodName; //初始化的方法名
     private volatile Object beanClass; //
@@ -76,11 +76,11 @@ public class BeanDefinition {
         this.dependsOn = dependsOn;
     }
 
-    public ArgumentValues getConstructorArgumentValues() {
+    public ConstructorArgumentValues getConstructorArgumentValues() {
         return constructorArgumentValues;
     }
 
-    public void setConstructorArgumentValues(ArgumentValues constructorArgumentValues) {
+    public void setConstructorArgumentValues(ConstructorArgumentValues constructorArgumentValues) {
         this.constructorArgumentValues = constructorArgumentValues;
     }
 
