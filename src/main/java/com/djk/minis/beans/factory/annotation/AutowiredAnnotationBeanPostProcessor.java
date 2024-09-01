@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 
 /**
  * 处理@Autowired注解的后置处理器
- *
+ * 换句话说，就是解释@Autowired注解
  */
 public class AutowiredAnnotationBeanPostProcessor implements BeanPostProcessor {
     private AutowireCapableBeanFactory beanFactory;
