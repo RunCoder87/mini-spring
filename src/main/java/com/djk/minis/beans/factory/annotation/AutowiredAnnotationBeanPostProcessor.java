@@ -1,6 +1,7 @@
 package com.djk.minis.beans.factory.annotation;
 
 import com.djk.minis.beans.BeansException;
+import com.djk.minis.beans.factory.config.AbstractAutowireCapableBeanFactory;
 import com.djk.minis.beans.factory.config.AutowireCapableBeanFactory;
 import com.djk.minis.beans.factory.config.BeanPostProcessor;
 
@@ -47,6 +48,11 @@ public class AutowiredAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         return null;
+    }
+
+    @Override
+    public void setBeanFactory(AbstractAutowireCapableBeanFactory abstractAutowireCapableBeanFactory) {
+        this.beanFactory = abstractAutowireCapableBeanFactory;
     }
 
     public void setBeanFactory(AutowireCapableBeanFactory beanFactory) {

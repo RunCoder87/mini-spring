@@ -16,10 +16,12 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 基于代码复用、解耦的原则
  * 对BeanFactory通用的部分代码进行抽象
+ * 提供一个具有基本功能的BeanFactory实现，方便扩展
+ *
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory, BeanDefinitionRegistry {
-    private Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
-    private List<String> beanDefinitionNames = new ArrayList<>();
+    public Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
+    protected List<String> beanDefinitionNames = new ArrayList<>();
     private final Map<String, Object> earlySingletonObjects = new HashMap<>();
 
     public AbstractBeanFactory() {
@@ -67,6 +69,11 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return singleton;
     }
 
+    /**
+     *
+     * @param beanDefinition
+     * @param singleton
+     */
     private void invokeInitMethod(BeanDefinition beanDefinition, Object singleton) {
         Class<?> clz = beanDefinition.getClass();
         try {
@@ -237,7 +244,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
     }
 
     @Override
-    public Boolean containsBean(String beanName) {
+    public boolean containsBean(String beanName) {
         return containsSingleton(beanName);
     }
 

@@ -1,6 +1,7 @@
 package com.djk.minis.beans.factory.xml;
 
 import com.djk.minis.beans.factory.config.*;
+import com.djk.minis.beans.factory.support.DefaultListableBeanFactory;
 import com.djk.minis.beans.factory.support.SimpleBeanFactory;
 import com.djk.minis.core.Resource;
 import org.dom4j.Element;
@@ -16,69 +17,57 @@ import java.util.List;
  * 4.封装成bean并加载到内存中
  */
 public class XmlBeanDefinitionReader {
-    AutowireCapableBeanFactory simpleBeanFactory;
-
-    public XmlBeanDefinitionReader(AutowireCapableBeanFactory simpleBeanFactory) {
-        this.simpleBeanFactory = simpleBeanFactory;
+    SimpleBeanFactory bf;
+    public XmlBeanDefinitionReader(SimpleBeanFactory bf) {
+        this.bf = bf;
     }
+    public void loadBeanDefinitions(Resource res) {
+        while (res.hasNext()) {
+            Element element = (Element)res.next();
+            String beanID=element.attributeValue("id");
+            String beanClassName=element.attributeValue("class");
 
-    //从文件中读取bean定义
-    //将bean定义注册到bean工厂中
-    public void loadBeanDefinitions(Resource resource) {
-        while (resource.hasNext()) {
-            //获取bean标签
-            Element element = (Element) resource.next();
-            //解析bean的基本信息(bean标签)
-            String beanId = element.attributeValue("id");
-            String beanClassName = element.attributeValue("class");
-            BeanDefinition beanDefinition = new BeanDefinition(beanId, beanClassName);
+            BeanDefinition beanDefinition=new BeanDefinition(beanID,beanClassName);
 
-            //获取bean标签下的constructor标签
+            //get constructor
             List<Element> constructorElements = element.elements("constructor-arg");
-            ConstructorArgumentValues constructorArgumentValues = new ConstructorArgumentValues();
-            //解析constructor标签
-            for (Element constructorElement : constructorElements) {
-                String type = constructorElement.attributeValue("type");
-                String name = constructorElement.attributeValue("name");
-                String argumentValue = constructorElement.attributeValue("value");
-                //创建属性对象
-                ConstructorArgumentValue AV = new ConstructorArgumentValue(type, name, argumentValue);
-                constructorArgumentValues.addArgumentValue(AV);
+            ConstructorArgumentValues AVS = new ConstructorArgumentValues();
+            for (Element e : constructorElements) {
+                String pType = e.attributeValue("type");
+                String pName = e.attributeValue("name");
+                String pValue = e.attributeValue("value");
+                AVS.addArgumentValue(new ConstructorArgumentValue(pType,pName,pValue));
             }
-            beanDefinition.setConstructorArgumentValues(constructorArgumentValues);
+            beanDefinition.setConstructorArgumentValues(AVS);
+            //end of handle constructor
 
-            //获取bean标签下的property标签
+            //handle properties
             List<Element> propertyElements = element.elements("property");
-            PropertyValues propertyValues = new PropertyValues();
+            PropertyValues PVS = new PropertyValues();
             List<String> refs = new ArrayList<>();
-            //解析property标签
-            for (Element propertyElement : propertyElements) {
-                String name = propertyElement.attributeValue("name");
-                String value = propertyElement.attributeValue("value");
-                String ref = propertyElement.attributeValue("ref");
-                String type = propertyElement.attributeValue("type");
-                boolean isRef = false;
+            for (Element e : propertyElements) {
+                String pType = e.attributeValue("type");
+                String pName = e.attributeValue("name");
+                String pValue = e.attributeValue("value");
+                String pRef = e.attributeValue("ref");
                 String pV = "";
-                //判断属性是普通值还是引用的bean
-                if (value != null && !value.equals("")) {
+                boolean isRef = false;
+                if (pValue != null && !pValue.equals("")) {
                     isRef = false;
-                    pV = value;
-                } else if (ref != null && !ref.equals("")) {
+                    pV = pValue;
+                } else if (pRef != null && !pRef.equals("")) {
                     isRef = true;
-                    pV = ref;
-                    refs.add(ref);
+                    pV = pRef;
+                    refs.add(pRef);
                 }
-                //创建属性对象
-                PropertyValue PV = new PropertyValue(type, name, pV, isRef);
-                propertyValues.addPropertyValue(PV);
+                PVS.addPropertyValue(new PropertyValue(pType, pName, pV, isRef));
             }
-            //给beanDefinition设置属性
-            beanDefinition.setPropertyValues(propertyValues);
-            String[] refArray = refs.toArray(new String[refs.size()]);
+            beanDefinition.setPropertyValues(PVS);
+            String[] refArray = refs.toArray(new String[0]);
             beanDefinition.setDependsOn(refArray);
+            //end of handle properties
 
-            //注册beanDefinition
-            simpleBeanFactory.registerBeanDefinition(beanId,beanDefinition);
+            this.bf.registerBeanDefinition(beanID,beanDefinition);
         }
     }
 }

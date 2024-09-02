@@ -13,7 +13,7 @@ public interface BeanFactory {
     Object getBean(String beanName) throws BeansException;
     // 注册bean
 //    void registerBean(String beanName, Object obj);
-    Boolean containsBean(String beanName);
+    boolean containsBean(String beanName);
     boolean isSingleton(String beanName);
     boolean isPrototype(String beanName);
     Class<?> getType(String beanName);
