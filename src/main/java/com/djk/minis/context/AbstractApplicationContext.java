@@ -1,6 +1,5 @@
 package com.djk.minis.context;
 
-import com.djk.minis.beans.ApplicationEventPublisher;
 import com.djk.minis.beans.BeansException;
 import com.djk.minis.beans.factory.config.BeanFactoryPostProcessor;
 import com.djk.minis.beans.factory.config.BeanPostProcessor;
@@ -57,7 +56,13 @@ public abstract class AbstractApplicationContext implements ApplicationContext{
     }
 
 
+    /**
+     * 刷新容器，完成bean的实例化，属性的设置，bean的初始化等操作
+     * @throws BeansException
+     * @throws IllegalStateException
+     */
     public void refresh() throws BeansException, IllegalStateException {
+
         postProcessBeanFactory(getBeanFactory());
 
         registerBeanPostProcessors(getBeanFactory());

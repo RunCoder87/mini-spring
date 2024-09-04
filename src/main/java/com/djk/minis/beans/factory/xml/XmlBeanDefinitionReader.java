@@ -1,8 +1,7 @@
 package com.djk.minis.beans.factory.xml;
 
-import com.djk.minis.beans.factory.config.*;
-import com.djk.minis.beans.factory.support.DefaultListableBeanFactory;
-import com.djk.minis.beans.factory.support.SimpleBeanFactory;
+import com.djk.minis.beans.factory.*;
+import com.djk.minis.beans.factory.support.AbstractBeanFactory;
 import com.djk.minis.core.Resource;
 import org.dom4j.Element;
 
@@ -17,8 +16,8 @@ import java.util.List;
  * 4.封装成bean并加载到内存中
  */
 public class XmlBeanDefinitionReader {
-    SimpleBeanFactory bf;
-    public XmlBeanDefinitionReader(SimpleBeanFactory bf) {
+    AbstractBeanFactory bf;
+    public XmlBeanDefinitionReader(AbstractBeanFactory bf) {
         this.bf = bf;
     }
     public void loadBeanDefinitions(Resource res) {

@@ -1,4 +1,4 @@
-package com.djk.minis.beans.factory.config;
+package com.djk.minis.beans.factory;
 
 /**
  * 对应xml中的<constructor-arg>标签

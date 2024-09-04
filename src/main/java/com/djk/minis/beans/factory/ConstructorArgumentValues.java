@@ -1,4 +1,4 @@
-package com.djk.minis.beans.factory.config;
+package com.djk.minis.beans.factory;
 /**
  * 存储xml里所有的<constructor-arg>实体类的信息
  *

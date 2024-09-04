@@ -2,10 +2,8 @@ package com.djk.minis.beans.factory.support;
 
 import com.djk.minis.beans.BeansException;
 import com.djk.minis.beans.factory.config.AbstractAutowireCapableBeanFactory;
-import com.djk.minis.beans.factory.config.BeanDefinition;
-import com.djk.minis.beans.factory.config.BeanPostProcessor;
+import com.djk.minis.beans.factory.BeanDefinition;
 import com.djk.minis.beans.factory.config.ConfigurableListableBeanFactory;
-import com.djk.minis.beans.factory.xml.ListableBeanFactory;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

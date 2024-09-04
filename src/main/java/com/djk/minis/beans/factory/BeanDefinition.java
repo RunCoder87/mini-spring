@@ -1,4 +1,4 @@
-package com.djk.minis.beans.factory.config;
+package com.djk.minis.beans.factory;
 
 /**
  * bean定义

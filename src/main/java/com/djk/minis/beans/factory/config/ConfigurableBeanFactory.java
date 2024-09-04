@@ -1,6 +1,7 @@
 package com.djk.minis.beans.factory.config;
 
 import com.djk.minis.beans.factory.BeanFactory;
+import com.djk.minis.beans.factory.SingletonBeanRegistry;
 
 /**
  *  可配置的Bean工厂（配置管理）

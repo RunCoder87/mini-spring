@@ -1,11 +1,15 @@
-package com.djk.minis.beans;
+package com.djk.minis.context;
 
 import java.util.EventObject;
 
+/**
+ * 事件基类
+ */
 public class ApplicationEvent extends EventObject {
     private static final long serialVersionUID = 1L;
-
+    protected String msg = null;
     public ApplicationEvent(Object source) {
         super(source);
+        this.msg = source.toString();
     }
 }

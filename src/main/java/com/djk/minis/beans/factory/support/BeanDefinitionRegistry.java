@@ -1,6 +1,6 @@
 package com.djk.minis.beans.factory.support;
 
-import com.djk.minis.beans.factory.config.BeanDefinition;
+import com.djk.minis.beans.factory.BeanDefinition;
 
 /**
  * 存放BeanDefinition的仓库

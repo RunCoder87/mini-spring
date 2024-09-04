@@ -1,8 +1,7 @@
 package com.djk.minis.beans.factory.support;
 
 import com.djk.minis.beans.BeansException;
-import com.djk.minis.beans.factory.BeanFactory;
-import com.djk.minis.beans.factory.config.*;
+import com.djk.minis.beans.factory.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

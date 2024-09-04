@@ -1,7 +1,9 @@
 package com.djk.minis.context;
 
-import com.djk.minis.beans.ApplicationEvent;
-
+/**
+ * 自定义容器刷新事件
+ *
+ */
 public class ContextRefreshEvent extends ApplicationEvent{
 
     private static final long serialVersionUID = 1L;
@@ -13,7 +15,8 @@ public class ContextRefreshEvent extends ApplicationEvent{
     @Override
     public String toString() {
         return "ContextRefreshEvent{" +
-                "source=" + source +
+                "msg='" + msg + '\'' +
+                ", source=" + source +
                 '}';
     }
 }

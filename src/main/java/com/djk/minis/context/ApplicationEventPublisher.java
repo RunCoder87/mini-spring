@@ -1,7 +1,9 @@
-package com.djk.minis.beans;
+package com.djk.minis.context;
 
-import com.djk.minis.context.ApplicationListener;
-
+/**
+ * 容器事件发布者
+ *      负责容器的事件发布
+ */
 public interface ApplicationEventPublisher {
     void publishEvent(ApplicationEvent event);
 

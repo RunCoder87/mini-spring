@@ -1,4 +1,4 @@
-package com.djk.minis.beans.factory.config;
+package com.djk.minis.beans.factory;
 
 import java.util.ArrayList;
 import java.util.List;
