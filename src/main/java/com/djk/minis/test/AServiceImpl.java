@@ -9,6 +9,9 @@ public class AServiceImpl implements AService {
     private int level;
     private BaseService ref1;
 
+    public AServiceImpl() {
+    }
+
     public AServiceImpl(String name, int level) {
         this.name = name;
         this.level = level;

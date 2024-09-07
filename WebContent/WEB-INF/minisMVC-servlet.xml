@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<beans>
+    &lt;!&ndash;
+        访问/helloworld的时候，执行HelloWorldBean的doGet方法
+    &ndash;&gt;
+    <bean id="/helloworld" class="com.djk.minis.test.HelloWordBean" value="doGet"/>
+</beans>-->
+
+<!--自动配置包内满足条件的类-->
+<components>
+    <component-scan base-package="com.djk.minis.test"/>
+</components>
+
